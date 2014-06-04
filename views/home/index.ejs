@@ -1,5 +1,28 @@
+<% if (!user) { %>
+
 <div class="row">
   <div class="small-12 large-12 columns text-center">
   	<h1>This is to test a real-time chat on a few servers. Let's test things!</h1>
   </div>
 </div>
+
+<% } else { %>
+
+<div class="row" id="chat">
+	<div id="messages" class="small-9 large-9 columns"></div>
+	  <div id="users" class="small-3 large-3 columns">
+	    <p class="lead">Users</p>
+	    <ul></ul>
+	</div>
+</div>
+
+<div class="row" id="message-entry">
+  <div class="small-10 large-10 columns">
+    <input id="new-message" class="form-control" type="text" name="new-message" />
+  </div>
+  <div class="small-2 large-2 columns">
+    <button id="send-message" class="btn btn-default">Send</button>
+  </div>
+</div>
+
+<% } %>
