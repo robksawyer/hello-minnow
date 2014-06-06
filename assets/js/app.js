@@ -37,6 +37,10 @@
   var setChatHeight = function () {
     var height = $(window).height();
     chatWindow.height(height - 130);
+
+
+    // messageDiv.scrollTop(messageDiv[0].scrollHeight);
+
   };
 
   setInterval(setChatHeight, 100);
@@ -71,10 +75,11 @@
   var renderMessage = function (msg) {
     var time = moment(msg.createdAt).format('YYYY-MM-DD HH:mm');
     messageDiv.append(
-      '<p><strong>' + msg.username + ': </strong> ' + msg.body
+      '<li><strong>' + msg.username + ': </strong> ' + msg.body
       + '<br /><span class="time">' + time + '</span>'
-      + '</p>'
+      + '</li>'
     );
+    messageDiv.scrollTop(messageDiv[0].scrollHeight);
   };
   var sendMessage = function () {
     io.socket.post('/message', { body: newMessage.val() },
