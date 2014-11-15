@@ -1,30 +1,31 @@
 <% if (!user) { %>
 
-<div class="row">
-  <div class="small-12 large-12 columns text-center">
-  	<h1>This is to test a real-time chat on a few servers. Let's test things!</h1>
+  <div class="row">
+    <div class="small-12 large-12 columns text-center">
+    	<h1>This is to test a real-time chat on a few servers. Let's test things!</h1>
+    </div>
   </div>
-</div>
 
 <% } else { %>
 
-<div class="row" id="chat">
-	<div class="small-5 large-5 columns small-centered">
-  <ul id="messages" class="panel"></ul>
+  <div id="main">
+  <!-- <div>
+      My name: <input type="text" id="my-name"> <button id="update-name">Update</button>
+  </div> -->
+  <h1>Users online</h1>
+  <div class="row" id="chat">
+      <select id="users-list" size="5"></select>
+      <button id="private-msg-button">Send private message to selected user</button>
+      <div id="convos"></div>
   </div>
-	<!-- <div id="users" class="small-3 large-3 columns">
-	    <p class="lead">Users</p>
-	    <ul></ul>
-	</div> -->
+  <h1>Chat rooms</h1>
+  <div>
+      <select id="rooms-list" size="5"></select>
+      <button id="join-room">Join selected room</button>
+      <button id="new-room">Start a new room</button>
+      <div id="rooms"></div>
+  </div>
 </div>
-
-<div class="row" id="message-entry">
-  <div class="small-10 large-10 columns">
-    <input id="new-message" class="form-control" type="text" name="new-message" />
-  </div>
-  <div class="small-2 large-2 columns">
-    <button id="send-message" class="btn btn-default">Send</button>
-  </div>
-</div>
+<div id="disconnect" style="display:none">Waiting for reconnect...</div>
 
 <% } %>
