@@ -41,6 +41,8 @@ module.exports.routes = {
   'get /auth/:provider': 'AuthController.provider',
   'get /auth/:provider/callback': 'AuthController.callback',
 
+  'get /search': 'SearchController.index',
+  'get /chat': 'ChatController.index',
 
   // Custom routes here...
 
