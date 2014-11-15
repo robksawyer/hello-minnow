@@ -51,6 +51,7 @@ function removeUser(user) {
 
 // Add multiple users to the users list.
 function updateUserList(users) {
+  sails.log(users);
   users.forEach(function(user) {
     if (user.id == me.id) {return;}
     addUser(user);
