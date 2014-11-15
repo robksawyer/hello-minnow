@@ -1,7 +1,7 @@
-Sails-Foundation-Passport-Chat
+Minnow
 ==============================
 
-This will be a Chat app built with Sails and Passport. Foundation Zurb is used for styling.
+
 
 
 ## Done
