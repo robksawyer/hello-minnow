@@ -51,8 +51,8 @@ function removeUser(user) {
 
 // Add multiple users to the users list.
 function updateUserList(users) {
-  sails.log(users);
   users.forEach(function(user) {
+    accessToken = user.passports[0].tokens.accessToken;
     if (user.id == me.id) {return;}
     addUser(user);
   });
