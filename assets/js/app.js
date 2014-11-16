@@ -19,6 +19,8 @@ io.socket.on('connect', function socketConnected() {
     // with information about our user (data.me). Open the /config/sockets.js
     // file to see where the "hello" event is emitted.
     io.socket.on('hello', function(data) {
+      console.log("Hello Registered")
+      console.log(data);
       window.me = data;
       updateMyName(data);
     });

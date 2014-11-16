@@ -12,7 +12,7 @@ module.exports = {
         res.view({
             user: req.user
         });
-    },
+    }
 	
 };
 

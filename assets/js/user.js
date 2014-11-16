@@ -1,3 +1,5 @@
+var fbapi = require('facebook-api');
+
 // Update the value in the user name input.
 function updateMyName(me) {
   $('#my-name').val(me.name == 'unknown' ? 'User #' + me.id : me.name);
@@ -53,6 +55,10 @@ function removeUser(user) {
 function updateUserList(users) {
   users.forEach(function(user) {
     accessToken = user.passports[0].tokens.accessToken;
+    console.log('User: ' + user.id);
+    console.info(accessToken);
+    var client = fbapi.user(accessToken); // do not set an access token
+    console.log(client);
     if (user.id == me.id) {return;}
     addUser(user);
   });

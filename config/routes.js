@@ -46,8 +46,7 @@ module.exports.routes = {
   'get /search': 'SearchController.index',
   'get /chat': 'ChatController.index',
   'post /room/:roomId/users': 'RoomController.join',
-  'delete /room/:roomId/users': 'RoomController.leave'
-
+  'delete /room/:roomId/users': 'RoomController.leave',
   // If a request to a URL doesn't match any of the custom routes above,
   // it is matched against Sails route blueprints.  See `config/blueprints.js`
   // for configuration options and examples.

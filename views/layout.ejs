@@ -50,8 +50,9 @@
       <section class="top-bar-section">
         <!-- Right Nav Section -->
         <ul class="right">
+          <% sails.log(user); %>
           <% if (user) { %>
-            <!-- <li><%= user.username %></li> -->
+            <li><%= user.username %></li>
             <li class=""><a href="/user/<%= user.id %>"><%= user.username %></a></li>
             <li class="has-form">
               <a href="/logout" class="button">Logout</a>
