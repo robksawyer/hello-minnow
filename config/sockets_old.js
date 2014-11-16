@@ -1,11 +1,13 @@
 /**
- * Socket Configuration
+ * WebSocket Server Settings
+ * (sails.config.sockets)
  *
- * These configuration options provide transparent access to Sails' encapsulated
- * pubsub/socket server for complete customizability.
+ * These settings provide transparent access to the options for Sails'
+ * encapsulated WebSocket server, as well as some additional Sails-specific
+ * configuration layered on top.
  *
  * For more information on using Sails with Sockets, check out:
- * http://sailsjs.org/#documentation
+ * http://links.sailsjs.org/docs/config/sockets
  */
 
 module.exports.sockets = {
@@ -16,64 +18,14 @@ module.exports.sockets = {
   // mixes in socket.io events for your routes and blueprints automatically.
   onConnect: function(session, socket) {
 
-    var socketId = sails.sockets.id(socket);
-
-    User.create({name: 'unknown', socketId: socketId}).exec(function(err, user) {
-
-        // Create the session.users hash if it doesn't exist already
-        session.users = session.users || {};
-
-        // Save this user in the session, indexed by their socket ID.
-        // This way we can look the user up by socket ID later.
-        session.users[socketId] = user;
-
-        // Persist the session
-        session.save();
-
-        // Send a message to the client with information about the new user
-        sails.sockets.emit(socketId, 'hello', user);
-
-        // Subscribe the connected socket to custom messages regarding the user.
-        // While any socket subscribed to the user will receive messages about the
-        // user changing their name or being destroyed, ONLY this particular socket
-        // will receive "message" events.  This allows us to send private messages
-        // between users.
-        User.subscribe(socket, user, 'message');
-
-        // Get updates about users being created
-        User.watch(socket);
-
-        // Get updates about rooms being created
-        Room.watch(socket);
-
-        // Publish this user creation event to every socket watching the User model via User.watch()
-        User.publishCreate(user, socket);
-
-    });
-
+    // By default, do nothing.
 
   },
 
   // This custom onDisconnect function will be run each time a socket disconnects
   onDisconnect: function(session, socket) {
 
-      try {
-        // Look up the user ID using the connected socket
-        var userId = session.users[sails.sockets.id(socket)].id;
-
-        // Get the user instance
-        User.findOne(userId).populate('rooms').exec(function(err, user) {
-
-          // Destroy the user instance
-          User.destroy({id:user.id}).exec(function(){});
-
-          // Publish the destroy event to every socket subscribed to this user instance
-          User.publishDestroy(user.id, null, {previous: user});
-        });
-      } catch (e) {
-        console.log("Error in onDisconnect: ", e);
-      }
-
+    // By default: do nothing.
   },
 
 
@@ -84,12 +36,11 @@ module.exports.sockets = {
   // The flashsocket transport is disabled by default
   // You can enable flashsockets by adding 'flashsocket' to this list:
   transports: [
-  'websocket',
-  'htmlfile',
-  'xhr-polling',
-  'jsonp-polling'
+    'websocket',
+    'htmlfile',
+    'xhr-polling',
+    'jsonp-polling'
   ],
-
 
 
 
@@ -128,22 +79,24 @@ module.exports.sockets = {
   // Global authorization for Socket.IO access,
   // this is called when the initial handshake is performed with the server.
   //
-  // By default (`authorization: true`), when a socket tries to connect, Sails verifies
-  // that a valid cookie was sent with the upgrade request.  If the cookie doesn't match
-  // any known user session, a new user session is created for it.
+  // By default (`authorization: false`), when a socket tries to connect, Sails
+  // allows it, every time.  If no valid cookie was sent, a temporary session will
+  // be created for the connecting socket.
+  //
+  // If `authorization: true`, before allowing a connection, Sails verifies that a
+  // valid cookie was sent with the upgrade request.  If the cookie doesn't match
+  // any known user session, a new user session is created for it. (In most cases, the
+  // user would already have a cookie since they loaded the socket.io client and the initial
+  // HTML page.)
   //
   // However, in the case of cross-domain requests, it is possible to receive a connection
   // upgrade request WITHOUT A COOKIE (for certain transports)
   // In this case, there is no way to keep track of the requesting user between requests,
   // since there is no identifying information to link him/her with a session.
+  // The sails.io.js client solves this by connecting to a CORS endpoint first to get a
+  // 3rd party cookie (fortunately this works, even in Safari), then opening the connection.
   //
-  // If you don't care about keeping track of your socket users between requests,
-  // you can bypass this cookie check by setting `authorization: false`
-  // which will disable the session for socket requests (req.session is still accessible
-  // in each request, but it will be empty, and any changes to it will not be persisted)
-  //
-  // On the other hand, if you DO need to keep track of user sessions,
-  // you can pass along a ?cookie query parameter to the upgrade url,
+  // You can also pass along a ?cookie query parameter to the upgrade url,
   // which Sails will use in the absense of a proper cookie
   // e.g. (when connection from the client):
   // io.connect('http://localhost:1337?cookie=smokeybear')
@@ -165,7 +118,23 @@ module.exports.sockets = {
         // to report an error, call `cb(err)`
     }
   */
-  authorization: true,
+  authorization: false,
+
+  // Whether to run code which supports legacy usage for connected
+  // sockets running the v0.9 version of the socket client SDK (i.e. sails.io.js).
+  // Disabled in newly generated projects, but enabled as an implicit default (i.e.
+  // legacy usage/v0.9 clients be supported if this property is set to true, but also
+  // if it is removed from this configuration file or set to `undefined`)
+  'backwardsCompatibilityFor0.9SocketClients': false,
+
+  // Whether to expose a 'get /__getcookie' route with CORS support
+  // that sets a cookie (this is used by the sails.io.js socket client
+  // to get access to a 3rd party cookie and to enable sessions).
+  //
+  // Warning: Currently in this scenario, CORS settings apply to interpreted
+  // requests sent via a socket.io connection that used this cookie to connect,
+  // even for non-browser clients! (e.g. iOS apps, toasters, node.js unit tests)
+  grant3rdPartyCookie: true,
 
   // Match string representing the origins that are allowed to connect to the Socket.IO server
   origins: '*:*',

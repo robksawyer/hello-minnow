@@ -8,7 +8,9 @@
 module.exports = {
 
 	index: function (req,res) {
-        console.log(req.user);
+		sails.log("I'm in HomeController");
+        sails.log(req.user);
+        sails.log('------');
         res.view({
             user: req.user
         });
