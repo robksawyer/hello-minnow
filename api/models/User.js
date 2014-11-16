@@ -16,8 +16,14 @@ module.exports = {
   // context explicitly.
   autosubscribe: ['destroy', 'update'],
   attributes: {
-
+  	provider: 'STRING',
   	name: 'string',
+  	displayName: 'string',
+  	password: 'STRING',
+  	emailConfirmationStatus: {
+  		type: 'STRING',
+        defaultsTo: 'UNCONFIRMED'
+  	},
   	username  : { type: 'string', unique: true },
     email     : { type: 'email',  unique: true },
     passports : { collection: 'Passport', via: 'user' },
@@ -25,9 +31,24 @@ module.exports = {
 		collection: 'room',
 		via: 'users',
 		dominant: true
-	}
+	},
+	rawResponse: 'JSON'
 
   },
+
+    // Lifecycle Callbacks
+/*    beforeCreate: function(values, next) {
+      if (values.provider && values.provider === "local"){
+        bcrypt.hash(values.password, 10, function(err, hash) {
+          if(err) return next(err);
+          values.password = hash;
+          next();
+        });
+      }else{
+        next();
+      }
+   }*/
+   
 
 	// Hook that gets called after the default publishUpdate is run.
 	// We'll use this to tell all public chat rooms about the user update.

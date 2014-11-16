@@ -120,20 +120,18 @@ var AuthController = {
    */
   callback: function (req, res) {
     passport.callback(req, res, function (err, user) {
-      console.log(err);
-      console.log("I'm in AuthController.");
-      console.log(user);
-
       req.login(user, function (err) {
 
         // If an error was thrown, redirect the user to the login which should
         // take care of rendering the error messages.
         if (err) {
           console.log(err);
+          //res.status(404);
+          //res.view('404', { message: 'There was an issue logging you in. Try again later.' });
           res.redirect(req.param('action') === 'register' ? '/register' : '/login');
         }
-        // Upon successful login, send the user to the homepage were req.user
-        // will available.
+
+        // Upon successful login, send the user to the homepage where req.user will be available.
         else {
           res.redirect('/');
         }

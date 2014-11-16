@@ -18,7 +18,8 @@ module.exports.sockets = {
 
     var socketId = sails.sockets.id(socket);
 
-    User.create({name: 'unknown', socketId: socketId}).exec(function(err, user) {
+    //This needs to move to the facebook login callback
+    /*User.create({name: 'unknown', socketId: socketId}).exec(function(err, user) {
 
         // Create the session.users hash if it doesn't exist already
         session.users = session.users || {};
@@ -49,7 +50,7 @@ module.exports.sockets = {
         // Publish this user creation event to every socket watching the User model via User.watch()
         User.publishCreate(user, socket);
 
-    });
+    });*/
 
 
   },
@@ -169,6 +170,22 @@ module.exports.sockets = {
 
   // Match string representing the origins that are allowed to connect to the Socket.IO server
   origins: '*:*',
+
+  // Whether to run code which supports legacy usage for connected
+  // sockets running the v0.9 version of the socket client SDK (i.e. sails.io.js).
+  // Disabled in newly generated projects, but enabled as an implicit default (i.e.
+  // legacy usage/v0.9 clients be supported if this property is set to true, but also
+  // if it is removed from this configuration file or set to `undefined`)
+  'backwardsCompatibilityFor0.9SocketClients': false,
+
+  // Whether to expose a 'get /__getcookie' route with CORS support
+  // that sets a cookie (this is used by the sails.io.js socket client
+  // to get access to a 3rd party cookie and to enable sessions).
+  //
+  // Warning: Currently in this scenario, CORS settings apply to interpreted
+  // requests sent via a socket.io connection that used this cookie to connect,
+  // even for non-browser clients! (e.g. iOS apps, toasters, node.js unit tests)
+  grant3rdPartyCookie: true,
 
   // Should we use heartbeats to check the health of Socket.IO connections?
   heartbeats: true,
