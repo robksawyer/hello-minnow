@@ -47,7 +47,7 @@ module.exports.passport = {
     options: {
       clientID: process.env.FACEBOOK_CLIENT_ID,
       clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
-      callbackURL: 'http://hellominow.co/auth/facebook/callback'
+      callbackURL: 'http://www.hellominnow.co/auth/facebook/callback'
     }
   },
 
