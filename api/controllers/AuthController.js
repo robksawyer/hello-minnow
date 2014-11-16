@@ -123,8 +123,6 @@ var AuthController = {
       console.log(err);
       console.log("I'm in AuthController.");
       console.log(user);
-      console.log(res);
-      console.log(req);
 
       req.login(user, function (err) {
 

@@ -131,19 +131,21 @@ io.socket.on('connect', function socketConnected() {
 
     // Add a click handler for the "Update name" button, allowing the user to update their name.
     // updateName() is defined in user.js.
-    $('#update-name').click(updateName);
+    // $('#update-name').click(updateName);
 
     // Add a click handler for the "Send private message" button
     // startPrivateConversation() is defined in private_message.js.
-    $('#private-msg-button').click(startPrivateConversation);
+    // $('#private-msg-button').click(startPrivateConversation);
 
     // Add a click handler for the "Join room" button
     // joinRoom() is defined in public_message.js.
-    $('#join-room').click(joinRoom);
+    // $('#join-room').click(joinRoom);
 
     // Add a click handler for the "New room" button
     // newRoom() is defined in room.js.
-    $('#new-room').click(newRoom);
+    // $('#new-room').click(newRoom);
+
+    newRoom();
 
     console.log('Socket is now connected!');
 

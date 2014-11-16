@@ -1,0 +1,22 @@
+{
+  "name": "hellow minnow",
+  "version": "0.0.1",
+  "authors": [
+    "Rob Sawyer <robksawyer@gmail.com>"
+  ],
+  "description": "Value your opinions.",
+  "main": "app.js",
+  "license": "Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License (http://creativecommons.org/licenses/by-nc-nd/4.0/)",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.0.3",
+    "font-awesome": "~4.0.3"
+  }
+}

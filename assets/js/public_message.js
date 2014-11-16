@@ -13,9 +13,12 @@ function createPublicRoom(room) {
   var roomDiv = $('<div id="'+roomName+'"></div>');
 
   // Create the HTML for the room
-  var roomHTML = '<h2>Chat room &ldquo;'+room.name+'&rdquo; <button id="leave-room-button-'+room.id+'">Leave Room</button></h2>\n' +
-                 '<div id="room-messages-'+room.id+'" style="width: 50%; height: 150px; overflow: auto; border: solid 1px #666; padding: 5px; margin: 5px"></div>'+
-                 '<input id="room-message-'+room.id+'"/> <button id="room-button-'+room.id+'">Send message</button">';
+  var roomHTML = '<div id="room-messages-'+room.id+'" class="room"></div>'+
+                 '<div class="row-fluid"><div class="form-group">' +
+                 '<div class="input-group col-sm-3 pull-left"><label class="sr-only" for="room-bounty-'+room.id+'">Bounty</label><div class="input-group-addon" style="padding: 5px 10px; color:green;border:0;background-color:#b2d7b8">$</div><input id="room-bounty-'+room.id+'" placeholder="1.00" style="margin-right:3px"/></div>' +
+                 '<label class="sr-only" for="room-message-'+room.id+'">Message</label><input id="room-message-'+room.id+'" class="col-sm-7" placeholder="Value your opinions." />' +
+                 '<button id="room-button-'+room.id+'" class="btn btn-xs btn-warning" type="button" style="margin-left: 3px;">Send message</button>' +
+                 '</div></div>'; 
 
   roomDiv.html(roomHTML);
 

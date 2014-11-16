@@ -15,6 +15,12 @@
 // (if you're using LESS with the built-in default config, you'll want
 //  to change `assets/styles/importer.less` instead.)
 var cssFilesToInject = [
+
+  //Set the order 
+  //
+  'styles/normalize.css',
+  '/styles/dist/css/bootstrap.css',
+  
   'styles/**/*.css'
 ];
 
@@ -26,11 +32,6 @@ var jsFilesToInject = [
   // Dependencies like sails.io.js, jQuery, or Angular
   // are brought in here
   'js/dependencies/**/*.js',
-
-  // Dependecies for Foundation
-  'js/vendor/jquery.js',  
-  'js/vendor/jquery.cookie.js',  
-  'js/vendor/modernizr.js',  
 
   // All of the rest of your client-side js files
   // will be injected here in no particular order.

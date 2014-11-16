@@ -1,8 +1,8 @@
 // Add a new room to the list
 function newRoom() {
 
-  // Prompt the user for the name of the new room
-  var roomName = prompt('Please enter a name for the new room');
+  var roomName = '#minnow';
+  console.log("Setting up room " + roomName);
 
   // As long as a name is entered, create the new room.
   if (roomName) {
@@ -12,7 +12,7 @@ function newRoom() {
       addRoom(data);
 
       // Select it in the list
-      $('#rooms-list').val(data.id);
+      //$('#rooms-list').val(data.id);
 
       // Create the room HTML
       createPublicRoom({id:data.id, name:data.name});
@@ -63,12 +63,12 @@ function decreaseRoomCount(roomId) {
 
 // Remove a user from the list of available rooms to join, by sending
 // either a room object or a room ID.
-function removeRoom(room) {
+// function removeRoom(room) {
 
-  // Get the room's ID
-  var id = room.id || room;
-  $('#room-'+id).remove();
-}
+//   // Get the room's ID
+//   var id = room.id || room;
+//   $('#room-'+id).remove();
+// }
 
 // Add multiple rooms to the rooms list.
 function updateRoomList(rooms) {

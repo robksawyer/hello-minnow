@@ -1,32 +1,51 @@
-<% sails.log(res.locals.user) %>
-<% if (!user) { %>
+<div class="row-fluid">
+  <% sails.log(res.locals.user) %>
+  <% if (!user) { %>
 
-  <div class="row">
-    <div class="small-12 large-12 columns text-center">
-    	<h1>This is to test a real-time chat on a few servers. Let's test things!</h1>
+    <div class="jumbotron" style="text-align:center">
+      	<h1>Value your opinions.</h1>
+        <p class="lead">Minnow is focused on restoring the promise of radical anonymity to the web.</p>
+        <p class="container-fluid">
+          <a href="/auth/facebook" role="button" class="btn btn-lg btn-primary">Login with Facebook</a>
+        </p>
+    </div>
+    <div class="col-lg-6">
+      <div class="row-fluid">
+        <h4>Literally get paid</h4>
+        <p>We think your opinion matters. As a matter of fact, so much, that we've decided to build a platform that allows you to monetize it.</p>
+      </div>
+      <div class="row-fluid">
+        <h4>Express yourself</h4>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled</p>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="row-fluid">
+        <h4>Inspire and motivate</h4>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled</p>
+      </div>
+      <div class="row-fluid">
+        <h4>Real news 24/7</h4>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled</p>
+      </div>
+    </div>
+    
+
+  <% } else { %>
+
+  <div id="disconnect" class="bs-callout bs-callout-warning" style="display:none">
+    <h4>Waiting for reconnect...</h4>
+    <p>You may have to refresh the page.</p>
+  </div>
+  <div class="row-fluid">
+    <div class="col-lg-8">
+        <div id="rooms"></div>
+    </div>
+    <div class="col-lg-4 user-list-container">
+       <select id="users-list" size="5" class="user-list"></select>
+       <p>Users Online</p>
     </div>
   </div>
 
-<% } else { %>
-
-<div id="main">
-  <div>
-      My name: <input type="text" id="my-name"> <button id="update-name">Update</button>
-  </div>
-  <h1>Users online</h1>
-  <div>
-      <select id="users-list" size="5"></select>
-      <button id="private-msg-button">Send private message to selected user</button>
-      <div id="convos"></div>
-  </div>
-  <h1>Chat rooms</h1>
-  <div>
-      <select id="rooms-list" size="5"></select>
-      <button id="join-room">Join selected room</button>
-      <button id="new-room">Start a new room</button>
-      <div id="rooms"></div>
-  </div>
+  <% } %>
 </div>
-<div id="disconnect" style="display:none">Waiting for reconnect...</div>
-
-<% } %>
