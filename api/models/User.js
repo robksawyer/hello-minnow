@@ -28,26 +28,13 @@ module.exports = {
     email     : { type: 'email',  unique: true },
     passports : { collection: 'Passport', via: 'user' },
     rooms: {
-		collection: 'room',
-		via: 'users',
-		dominant: true
-	},
-	rawResponse: 'JSON'
+  		collection: 'room',
+  		via: 'users',
+  		dominant: true
+  	},
+  	rawResponse: 'JSON'
 
   },
-
-    // Lifecycle Callbacks
-/*    beforeCreate: function(values, next) {
-      if (values.provider && values.provider === "local"){
-        bcrypt.hash(values.password, 10, function(err, hash) {
-          if(err) return next(err);
-          values.password = hash;
-          next();
-        });
-      }else{
-        next();
-      }
-   }*/
    
 
 	// Hook that gets called after the default publishUpdate is run.

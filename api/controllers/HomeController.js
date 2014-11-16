@@ -16,10 +16,9 @@ module.exports = {
 	        res.view({
 	            user: req.user
 	        });
-		} else {
-			res.view();
 		}
-        
+		
+		res.view();
     }
 	
 };

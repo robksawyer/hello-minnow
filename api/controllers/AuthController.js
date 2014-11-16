@@ -128,7 +128,6 @@ var AuthController = {
           console.log(err);
           //res.status(404);
           //res.view('404', { message: 'There was an issue logging you in. Try again later.' });
-          res.redirect(req.param('action') === 'register' ? '/register' : '/login');
         }
 
         // Upon successful login, send the user to the homepage where req.user will be available.
