@@ -1,7 +1,7 @@
 Minnow
 ==============================
 
-Find it at <https://hello-minnow.herokuapp.com/>
+Find it at <https://hello-minnow.herokuapp.com/> and <http://hellominow.co>.
 
 
 ## Done

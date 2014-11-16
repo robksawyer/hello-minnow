@@ -32,6 +32,7 @@
     "sails": "~0.10.0-rc7",
     "sails-disk": "~0.10.0",
     "sails-generate-auth": "^0.1.4",
+    "sails-memory": "^0.10.3",
     "sails-postgresql": "^0.10.9",
     "validator": "^3.13.0"
   },

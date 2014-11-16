@@ -44,6 +44,16 @@ var AuthController = {
       };
     });
 
+    sails.log(providers);
+
+    // passport.authenticate(strategies['facebook'].name, function(err, user, info){
+    //   if ((err) || (!user)) res.send(err);
+    //   req.logIn(user, function(err){
+    //     if (err) res.send(err);
+    //     return res.send({ message: 'login successful' });
+    //   });
+    // })(req, res);
+
     // Render the `auth/login.ext` view
     res.view({
       providers : providers

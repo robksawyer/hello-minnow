@@ -39,7 +39,7 @@ passport.protocols = require('./protocols');
  *   2. From here, the logic branches into two paths.
  *
  *     - A user is not currently logged in:
- *       1. If a Passport wassn't found, create a new user as well as a new
+ *       1. If a Passport wasn't found, create a new user as well as a new
  *          Passport that will be assigned to the user.
  *       2. If a Passport was found, get the user associated with the passport.
  *
