@@ -42,8 +42,9 @@
     "validator": "^3.13.0"
   },
   "scripts": {
-    "start": "node app.js",
-    "debug": "node debug app.js"
+    "start": "sails lift",
+    "debug": "sails lift --debug",
+    "postinstall": "bower install"
   },
   "main": "app.js",
   "repository": {
