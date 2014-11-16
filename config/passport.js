@@ -46,7 +46,8 @@ module.exports.passport = {
     strategy: require('passport-facebook').Strategy,
     options: {
       clientID: process.env.FACEBOOK_CLIENT_ID,
-      clientSecret: process.env.FACEBOOK_CLIENT_SECRET
+      clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
+      callbackURL: 'http://hellominow.co/auth/facebook/callback'
     }
   },
 

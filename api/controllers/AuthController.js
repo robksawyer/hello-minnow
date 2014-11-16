@@ -120,6 +120,7 @@ var AuthController = {
    */
   callback: function (req, res) {
     passport.callback(req, res, function (err, user) {
+      console.log(err);
       console.log("I'm in AuthController.");
       console.log(user);
 
