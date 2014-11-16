@@ -123,12 +123,15 @@ var AuthController = {
       console.log(err);
       console.log("I'm in AuthController.");
       console.log(user);
+      console.log(res);
+      console.log(req);
 
       req.login(user, function (err) {
 
         // If an error was thrown, redirect the user to the login which should
         // take care of rendering the error messages.
         if (err) {
+          console.log(err);
           res.redirect(req.param('action') === 'register' ? '/register' : '/login');
         }
         // Upon successful login, send the user to the homepage were req.user
