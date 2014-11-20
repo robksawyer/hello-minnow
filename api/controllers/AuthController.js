@@ -125,9 +125,7 @@ var AuthController = {
         // If an error was thrown, redirect the user to the login which should
         // take care of rendering the error messages.
         if (err) {
-          console.log(err);
-          //res.status(404);
-          //res.view('404', { message: 'There was an issue logging you in. Try again later.' });
+          sails.log.error(err);
         }
 
         // Upon successful login, send the user to the homepage where req.user will be available.

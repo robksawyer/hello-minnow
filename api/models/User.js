@@ -16,30 +16,49 @@ module.exports = {
   // context explicitly.
   autosubscribe: ['destroy', 'update'],
   attributes: {
-  	provider: 'STRING',
-  	name: 'string',
-  	displayName: 'string',
-  	password: 'STRING',
+  	provider: 'string',
+  	token: 'string',
   	emailConfirmationStatus: {
-  		type: 'STRING',
-        defaultsTo: 'UNCONFIRMED'
+  		type: 'string',
+      defaultsTo: 'unconfirmed'
   	},
-  	username  : { type: 'string', unique: true },
     email     : { type: 'email',  unique: true },
     passports : { collection: 'Passport', via: 'user' },
-    rooms: {
+    /*posts: {
   		collection: 'room',
   		via: 'users',
   		dominant: true
-  	},
-  	rawResponse: 'JSON'
-
+  	},*/
+    facebookId: {
+      type: 'string',
+      required: true,
+      unique: true
+    },
+  	rawResponse: 'JSON',
+    likes: 'int',
+    comments: 'int'
   },
    
+  /**
+   * Callback to be run before creating a User.
+   *
+   * @param {Object}   user The soon-to-be-created user
+   * @param {Function} next
+   */
+  beforeCreate: function (user, next) {
+    if (user.hasOwnProperty('token')) {
+      bcrypt.hash(user.token, 10, function (err, hash) {
+        user.token = hash;
+        next(err, user);
+      });
+    } else {
+      next(null, user);
+    }
+  },
 
 	// Hook that gets called after the default publishUpdate is run.
 	// We'll use this to tell all public chat rooms about the user update.
-	afterPublishUpdate: function (id, changes, req, options) {
+	/*afterPublishUpdate: function (id, changes, req, options) {
 
 		// Get the full user model, including what rooms they're subscribed to
 		User.findOne(id).populate('rooms').exec(function(err, user) {
@@ -54,7 +73,7 @@ module.exports = {
 			
 		});
 	
-	}
+	}*/
 
 };
 

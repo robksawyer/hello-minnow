@@ -70,6 +70,8 @@ passport.connect = function (req, query, profile, next) {
   // Set the authentication provider.
   query.provider = req.param('provider');
 
+  sails.log(profile);
+  
   // If the profile object contains a list of emails, grab the first one and
   // add it to the user.
   if (profile.hasOwnProperty('emails')) {
