@@ -1,10 +1,11 @@
 module.exports = function(grunt) {
-	
+  
   grunt.config.set('bower', {
     dev: {
-        dest: '.tmp/public',
-        js_dest: '.tmp/public/js',
-        css_dest: '.tmp/public/styles'
+      dest: '.tmp/public',
+      js_dest: '.tmp/public/js',
+      css_dest: '.tmp/public/styles',
+      font_dest: '.tmp/public/fonts'
     }
   });
 

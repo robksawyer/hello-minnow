@@ -6,6 +6,7 @@
  * the basics of Passport.js to work.
  */
 var AuthController = {
+
   /**
    * Render the login page
    *

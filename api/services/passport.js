@@ -73,25 +73,11 @@ passport.connect = function (req, query, profile, next) {
 
   sails.log(profile);
 
-  // If the profile object contains a list of emails, grab the first one and
-  // add it to the user.
-  if (profile.hasOwnProperty('emails')) {
-    bcrypt.hash(profile.emails[0].value, 10, function (err, hash) {
-        user.email = hash;
-    });
-  }
-  // If the profile object contains a username, add it to the user.
-  if (profile.hasOwnProperty('username')) {
-    bcrypt.hash(profile.username, 10, function (err, hash) {
-        user.username = hash;
-    });
-  }
-
   // If neither an email or a username was available in the profile, we don't
   // have a way of identifying the user in the future. Throw an error and let
   // whoever's next in the line take care of it.
   if (!Object.keys(user).length) {
-    return next(new Error('Neither a username or email was available', null));
+    return next(new Error('That email address has been used already.', null));
   }
 
   Passport.findOne({
@@ -105,6 +91,7 @@ passport.connect = function (req, query, profile, next) {
       //           authentication provider.
       // Action:   Create a new user and assign them a passport.
       if (!passport) {
+
         User.create(user, function (err, user) {
           if (err) return next(err);
 
@@ -120,6 +107,7 @@ passport.connect = function (req, query, profile, next) {
             next(err, user);
           });
         });
+        
       }
       // Scenario: An existing user is trying to log in using an already
       //           connected passport.

@@ -19,8 +19,7 @@ var cssFilesToInject = [
   //Set the order 
   //
   'styles/normalize.css',
-  '/styles/dist/css/bootstrap.css',
-  
+  'styles/dist/css/bootstrap.css',
   'styles/**/*.css'
 ];
 
