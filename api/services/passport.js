@@ -92,7 +92,9 @@ passport.connect = function (req, query, profile, next) {
       // Action:   Create a new user and assign them a passport.
       if (!passport) {
 
-        User.create(user, function (err, user) {
+        sails.log(user);
+        
+        /*User.create(user, function (err, user) {
           if (err) return next(err);
 
           sails.log.info('Created a user!');
@@ -106,7 +108,7 @@ passport.connect = function (req, query, profile, next) {
 
             next(err, user);
           });
-        });
+        });*/
 
       }
       // Scenario: An existing user is trying to log in using an already

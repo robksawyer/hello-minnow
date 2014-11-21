@@ -2,10 +2,19 @@
   <div class="small-6 large-6 columns large-centered">
   	<h1>Register</h1>
 	<form role="form" action="/auth/local/register" method="post">
-	    <input type="text" name="email" placeholder="Email">
-	    <input type="text" name="phone" placeholder="Phone Number">
-	    <input type="password" name="password" placeholder="Password">
-	    <button type="submit">Sign up</button>
+	    <div class="form-group">
+			<label class="sr-only" for="email">Email address</label>
+			<input type="email" class="form-control" id="email" placeholder="Your email">
+		</div>
+		<div class="form-group">
+			<label class="sr-only" for="email">Phone number</label>
+			<input type="tel" class="form-control" id="phone" placeholder="Enter phone number">
+		</div>
+		<div class="form-group">
+			<label class="sr-only" for="password">Password</label>
+			<input type="password" class="form-control" name="password" placeholder="Enter password">
+		</div>
+	    <button type="submit" class="btn btn-primary">Sign up</button>
 	</form>
   </div>
 </div>
