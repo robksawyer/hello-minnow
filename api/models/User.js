@@ -13,17 +13,16 @@ module.exports = {
   schema: true,
 
   attributes: {
-    uuid: {
+    id: {
       type: 'string',
-      primaryKey: true,
-      required: true
+      primaryKey: true
     },
     facebookId: { 
       type: 'string',
       unique: true
     },
     email: { 
-      type: 'email',  
+      type: 'string',  
       unique: true 
     },
     phone: {
@@ -62,30 +61,18 @@ module.exports = {
    */
   beforeCreate: function (user, next) {
 
+    user.id = uuid.v4(); //Create the uuid
+
+    sails.log.info(user);
+    
     if (user.hasOwnProperty('email')) {
-      bcrypt.hash(user.email, 10, function (err, hash) {
-        user.email = hash;
-        next(err, user);
-      });
 
-      var ip = req.headers['x-forwarded-for'] || 
-       req.connection.remoteAddress || 
-       req.socket.remoteAddress ||
-       req.connection.socket.remoteAddress;
-
-      sails.log(ip);
-
-      //Create a separate token to be used for the email confirmation code
-      var timestamp = new Date().getTime();
-      bcrypt.hash(user.email + timestamp, 10, function (err, hash) {
-        user.ve_token = hash,
-        next(err, user);
-      });
 
     } else {
-      next(null, user);
-    }
 
+      next(null, user);
+
+    }
   },
 
 	// Hook that gets called after the default publishUpdate is run.

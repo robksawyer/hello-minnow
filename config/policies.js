@@ -20,9 +20,12 @@ module.exports.policies = {
   // (`true` allows public access)
   // '*': true,
   '*': [ 'passport' ],
-  MessageController: {
+  UserController: {
+  	create: ['getIp', 'anonymizer']
+  }
+  /*PostController: {
   	create: 'messagePolicy'
-  },
+  },*/
 
 	// Here's an example of mapping some policies to run before
   // a controller and its actions
