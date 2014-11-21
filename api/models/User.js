@@ -63,16 +63,10 @@ module.exports = {
 
     user.id = uuid.v4(); //Create the uuid
 
-    sails.log.info(user);
+    delete user.ip;
     
-    if (user.hasOwnProperty('email')) {
+    next(null, user);
 
-
-    } else {
-
-      next(null, user);
-
-    }
   },
 
 	// Hook that gets called after the default publishUpdate is run.

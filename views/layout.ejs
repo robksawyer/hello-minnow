@@ -62,8 +62,8 @@
               <li><a href="#search">Search</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-            <% sails.log(user); %>
             <% if (user) { %>
+              <% sails.log(user); %>
               <li><a href="/user/<%= user.id %>"><%= user.username %></a></li>
               <li class="logout">
                 <a href="/logout" class="button">Logout</a>
