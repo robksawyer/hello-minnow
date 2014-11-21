@@ -1,0 +1,118 @@
+body {
+  min-height: 2000px;
+}
+.navbar-static-top {
+  margin-bottom: 19px;
+}
+.navbar-inverse {
+  background-color: #ffd966;
+  border-color: #ffd966;
+}
+.bs-callout {
+  padding: 20px;
+  margin: 20px 0;
+  border: 1px solid #eee;
+  border-left-width: 5px;
+  border-radius: 3px;
+}
+.bs-callout h4 {
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+.bs-callout p:last-child {
+  margin-bottom: 0;
+}
+.bs-callout code {
+  border-radius: 3px;
+}
+.bs-callout + .bs-callout {
+  margin-top: -5px;
+}
+.bs-callout-danger {
+  border-left-color: #d9534f;
+}
+.bs-callout-danger h4 {
+  color: #d9534f;
+}
+.bs-callout-warning {
+  border-left-color: #f0ad4e;
+}
+.bs-callout-warning h4 {
+  color: #f0ad4e;
+}
+.bs-callout-info {
+  border-left-color: #5bc0de;
+}
+.bs-callout-info h4 {
+  color: #5bc0de;
+}
+.room {
+  width: 100%;
+  min-height: 150px;
+  height: 500px;
+  overflow: auto;
+  border: solid 1px #666;
+  padding: 5px;
+  margin-bottom: 5px;
+}
+.messages {
+  max-height: 300px;
+  /*overflow: auto;*/
+  margin: 24px auto 0 auto;
+  padding: 0 20px 0 0;
+  list-style: none;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.messages li {
+  position: relative;
+  clear: both;
+  display: inline-block;
+  padding: 16px 40px 16px 20px;
+  margin: 0 0 20px 0;
+  font: 16px/20px 'Noto Sans', sans-serif;
+  border-radius: 10px;
+  width: 100%;
+  /*background-color: $chat-thread-bgd-color;*/
+}
+.user-list {
+  width: 100%;
+  overflow: auto;
+  border: solid 1px #666;
+  padding: 5px;
+}
+.user-list-container p {
+  color: grey;
+  margin-left: 3px;
+}
+/* Chat - Avatar */
+/*.messages li:before {
+	position: absolute;
+	top: 0;
+	width: $chat-thread-avatar-size;
+	height: $chat-thread-avatar-size;
+	border-radius: $chat-thread-avatar-size;
+	content: '';
+}*/
+/* Chat - Speech Bubble Arrow */
+/*.messages li:after {
+	position: absolute;
+  top: $chat-thread-msg-arrow-size;
+	content: '';
+	width: 0;
+	height: 0;
+	border-top: $chat-thread-msg-arrow-size solid $chat-thread-bgd-color;
+}*/
+.control-group {
+  margin: 5px 0px 5px 0;
+}
+.navbar-brand {
+  padding: 0;
+}
+select#users-list {
+  width: 200px;
+  min-height: 200px;
+}
+footer {
+  margin-top: 75px;
+}
