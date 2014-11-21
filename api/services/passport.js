@@ -73,7 +73,7 @@ passport.connect = function (req, query, profile, next) {
 
   sails.log(profile);
 
-  // If neither an email or a username was available in the profile, we don't
+  // If an email was available in the profile, we don't
   // have a way of identifying the user in the future. Throw an error and let
   // whoever's next in the line take care of it.
   if (!Object.keys(user).length) {
@@ -107,7 +107,7 @@ passport.connect = function (req, query, profile, next) {
             next(err, user);
           });
         });
-        
+
       }
       // Scenario: An existing user is trying to log in using an already
       //           connected passport.
@@ -253,7 +253,7 @@ passport.loadStrategies = function (req) {
     if (key === 'local') {
       // Since we need to allow users to login using both usernames as well as
       // emails, we'll set the username field to something more generic.
-      _.extend(options, { usernameField: 'identifier' });
+      //_.extend(options, { usernameField: 'identifier' });
 
       // Only load the local strategy if it's enabled in the config
       if (strategies.local) {

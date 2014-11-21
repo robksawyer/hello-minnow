@@ -5,7 +5,11 @@ module.exports = function(grunt) {
       dest: '.tmp/public',
       js_dest: '.tmp/public/js',
       css_dest: '.tmp/public/styles',
-      font_dest: '.tmp/public/fonts'
+      eot_dest: '.tmp/public/styles',
+      ttf_dest: '.tmp/public/styles',
+      svg_dest: '.tmp/public/styles',
+      woff_dest: '.tmp/public/styles',
+      otf_dest: '.tmp/public/styles'
     }
   });
 
