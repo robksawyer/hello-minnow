@@ -5,38 +5,53 @@
 * @docs        :: http://sailsjs.org/#!documentation/models
 */
 
+var bcrypt = require('bcrypt'),
+    uuid = require('uuid');
+
 module.exports = {
 	
   schema: true,
 
-  // Subscribers only get to hear about update and destroy events.
-  // This lets us keep our "users online" list accurate, while avoiding
-  // sending private messages to anyone but the intended recipient.
-  // To get chat messages for a user, you subscribe to the `message`
-  // context explicitly.
-  autosubscribe: ['destroy', 'update'],
   attributes: {
-  	provider: 'string',
-  	token: 'string',
-  	emailConfirmationStatus: {
-  		type: 'string',
-      defaultsTo: 'unconfirmed'
-  	},
-    email     : { type: 'email',  unique: true },
-    passports : { collection: 'Passport', via: 'user' },
-    /*posts: {
-  		collection: 'room',
-  		via: 'users',
-  		dominant: true
-  	},*/
-    facebookId: {
+    uuid: {
       type: 'string',
-      required: true,
+      primaryKey: true,
+      required: true
+    },
+    facebookId: { 
+      type: 'string',
       unique: true
     },
-  	rawResponse: 'JSON',
+    email: { 
+      type: 'email',  
+      unique: true 
+    },
+    phone: {
+      type: 'string',
+      unique: true
+    },
+    emailConfirmationStatus: {
+      type: 'string',
+      defaultsTo: 'unconfirmed'
+    },
+    phoneConfirmationStatus: {
+      type: 'string',
+      defaultsTo: 'unconfirmed'
+    },
+    passports : { 
+      collection: 'Passport', 
+      via: 'user' 
+    },
+    posts: {
+      collection: 'post',
+      via: 'owner'
+    },
     likes: 'int',
-    comments: 'int'
+    comments: 'int',
+    rawResponse: 'JSON',
+    token: 'string',
+    vp_token: 'string', //Sent when the user signs up via a phone number. This token is sent along with a text message
+    ve_token: 'string' //Sent along with an email and allows the url to verify their email 
   },
    
   /**
@@ -46,14 +61,31 @@ module.exports = {
    * @param {Function} next
    */
   beforeCreate: function (user, next) {
-    if (user.hasOwnProperty('token')) {
-      bcrypt.hash(user.token, 10, function (err, hash) {
-        user.token = hash;
+
+    if (user.hasOwnProperty('email')) {
+      bcrypt.hash(user.email, 10, function (err, hash) {
+        user.email = hash;
         next(err, user);
       });
+
+      var ip = req.headers['x-forwarded-for'] || 
+       req.connection.remoteAddress || 
+       req.socket.remoteAddress ||
+       req.connection.socket.remoteAddress;
+
+      sails.log(ip);
+
+      //Create a separate token to be used for the email confirmation code
+      var timestamp = new Date().getTime();
+      bcrypt.hash(user.email + timestamp, 10, function (err, hash) {
+        user.ve_token = hash,
+        next(err, user);
+      });
+
     } else {
       next(null, user);
     }
+
   },
 
 	// Hook that gets called after the default publishUpdate is run.

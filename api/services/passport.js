@@ -1,5 +1,6 @@
 var passport = require('passport')
   , path     = require('path')
+  , bcrypt   = require('bcrypt')
   , url      = require('url');
 
 /**
@@ -71,15 +72,19 @@ passport.connect = function (req, query, profile, next) {
   query.provider = req.param('provider');
 
   sails.log(profile);
-  
+
   // If the profile object contains a list of emails, grab the first one and
   // add it to the user.
   if (profile.hasOwnProperty('emails')) {
-    user.email = profile.emails[0].value;
+    bcrypt.hash(profile.emails[0].value, 10, function (err, hash) {
+        user.email = hash;
+    });
   }
   // If the profile object contains a username, add it to the user.
   if (profile.hasOwnProperty('username')) {
-    user.username = profile.username;
+    bcrypt.hash(profile.username, 10, function (err, hash) {
+        user.username = hash;
+    });
   }
 
   // If neither an email or a username was available in the profile, we don't
@@ -103,6 +108,9 @@ passport.connect = function (req, query, profile, next) {
         User.create(user, function (err, user) {
           if (err) return next(err);
 
+          sails.log.info('Created a user!');
+          sails.log.info(user);
+          
           query.user = user.id;
 
           Passport.create(query, function (err, passport) {
