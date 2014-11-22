@@ -24,7 +24,7 @@ var validator = require('validator');
  */
 exports.register = function (req, res, next) {
   var email    = req.param('email')
-    , username = req.param('username')
+    , phone = req.param('phone')
     , password = req.param('password');
 
   if (!email) {
@@ -32,10 +32,10 @@ exports.register = function (req, res, next) {
     return next(new Error('No email was entered.'));
   }
 
-  if (!username) {
-    req.flash('error', 'Error.Passport.Username.Missing');
-    return next(new Error('No username was entered.'));
-  }
+  /*if (!phone) {
+    req.flash('error', 'Error.Passport.Phone.Missing');
+    return next(new Error('No phone was entered.'));
+  }*/
 
   if (!password) {
     req.flash('error', 'Error.Passport.Password.Missing');
@@ -43,7 +43,7 @@ exports.register = function (req, res, next) {
   }
 
   User.create({
-    username : username
+    phone : phone
   , email    : email
   }, function (err, user) {
     if (err) {
@@ -116,18 +116,14 @@ exports.login = function (req, identifier, password, next) {
   if (isEmail) {
     query.email = identifier;
   }
-  else {
-    query.username = identifier;
-  }
 
   User.findOne(query, function (err, user) {
     if (err) return next(err);
 
     if (!user) {
+      
       if (isEmail) {
         req.flash('error', 'Error.Passport.Email.NotFound');
-      } else {
-        req.flash('error', 'Error.Passport.Username.NotFound');
       }
 
       return next(null, false);

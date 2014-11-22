@@ -93,7 +93,7 @@ passport.connect = function (req, query, profile, next) {
       if (!passport) {
 
         sails.log(user);
-        
+
         /*User.create(user, function (err, user) {
           if (err) return next(err);
 
