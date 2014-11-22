@@ -68,11 +68,11 @@ passport.connect = function (req, query, profile, next) {
     , config     = strategies[profile.provider]
     , user       = {};
 
+  sails.log("passport.js -> passport.connect");
+  sails.log(profile);
+  
   // Set the authentication provider.
   query.provider = req.param('provider');
-
-  sails.log(query);
-  sails.log(profile);
 
   // If an email was available in the profile, we don't
   // have a way of identifying the user in the future. Throw an error and let
@@ -95,7 +95,7 @@ passport.connect = function (req, query, profile, next) {
 
         sails.log(user);
 
-        /*User.create(user, function (err, user) {
+        User.create(user, function (err, user) {
           if (err) return next(err);
 
           sails.log.info('Created a user!');
@@ -109,7 +109,7 @@ passport.connect = function (req, query, profile, next) {
 
             next(err, user);
           });
-        });*/
+        });
 
       }
       // Scenario: An existing user is trying to log in using an already

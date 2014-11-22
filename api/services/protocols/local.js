@@ -32,10 +32,10 @@ exports.register = function (req, res, next) {
     return next(new Error('No email was entered.'));
   }
 
-  /*if (!phone) {
+  if (!phone) {
     req.flash('error', 'Error.Passport.Phone.Missing');
     return next(new Error('No phone was entered.'));
-  }*/
+  }
 
   if (!password) {
     req.flash('error', 'Error.Passport.Password.Missing');

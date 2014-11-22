@@ -13,13 +13,17 @@ module.exports = {
   schema: true,
 
   attributes: {
-    id: {
+    /*id: {
       type: 'string',
       primaryKey: true
-    },
+    },*/
     facebookId: { 
       type: 'string',
       unique: true
+    },
+    username: { 
+      type: 'string', 
+      unique: true 
     },
     email: { 
       type: 'string',  
@@ -59,7 +63,7 @@ module.exports = {
    * @param {Object}   user The soon-to-be-created user
    * @param {Function} next
    */
-  beforeCreate: function (user, next) {
+  /*beforeCreate: function (user, next) {
 
     user.id = uuid.v4(); //Create the uuid
 
@@ -67,7 +71,7 @@ module.exports = {
     
     next(null, user);
 
-  },
+  },*/
 
 	// Hook that gets called after the default publishUpdate is run.
 	// We'll use this to tell all public chat rooms about the user update.
