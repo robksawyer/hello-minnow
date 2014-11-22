@@ -110,6 +110,7 @@ exports.connect = function (req, res, next) {
  * @param {Function} next
  */
 exports.login = function (req, identifier, password, next) {
+  sails.log(identifier);
   var isEmail = validator.isEmail(identifier)
     , query   = {};
 
@@ -121,7 +122,7 @@ exports.login = function (req, identifier, password, next) {
     if (err) return next(err);
 
     if (!user) {
-      
+
       if (isEmail) {
         req.flash('error', 'Error.Passport.Email.NotFound');
       }

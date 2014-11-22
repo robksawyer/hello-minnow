@@ -71,6 +71,7 @@ passport.connect = function (req, query, profile, next) {
   // Set the authentication provider.
   query.provider = req.param('provider');
 
+  sails.log(query);
   sails.log(profile);
 
   // If an email was available in the profile, we don't
@@ -255,7 +256,7 @@ passport.loadStrategies = function (req) {
     if (key === 'local') {
       // Since we need to allow users to login using both usernames as well as
       // emails, we'll set the username field to something more generic.
-      //_.extend(options, { usernameField: 'identifier' });
+      _.extend(options, { usernameField: 'identifier' });
 
       // Only load the local strategy if it's enabled in the config
       if (strategies.local) {

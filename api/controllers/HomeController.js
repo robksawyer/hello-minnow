@@ -7,9 +7,8 @@
 
 module.exports = {
 
-	index: function (req,res) {
-		sails.log("I'm in HomeController");
-
+	index: function (req, res) {
+		
 		if(req.user) {
 			sails.log(req.user);
 	        sails.log('------');
