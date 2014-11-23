@@ -70,7 +70,7 @@ passport.connect = function (req, query, profile, next) {
 
   sails.log("passport.js -> passport.connect");
   sails.log(profile);
-  
+
   // Set the authentication provider.
   query.provider = req.param('provider');
 
@@ -162,6 +162,7 @@ passport.connect = function (req, query, profile, next) {
  * @param  {Object} res
  */
 passport.endpoint = function (req, res) {
+  sails.log("passport.endpoint");
   var strategies = sails.config.passport
     , provider   = req.param('provider')
     , options    = {};
@@ -247,6 +248,7 @@ passport.callback = function (req, res, next) {
  * @param {Object} req
  */
 passport.loadStrategies = function (req) {
+  sails.log("passport.loadStrategies");
   var self       = this
     , strategies = sails.config.passport;
 

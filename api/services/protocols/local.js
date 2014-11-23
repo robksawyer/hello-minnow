@@ -44,7 +44,7 @@ exports.register = function (req, res, next) {
 
   User.create({
     phone : phone
-  , email    : email
+  , email : email
   }, function (err, user) {
     if (err) {
       req.flash('error', 'Error.Passport.User.Exists');
@@ -110,6 +110,7 @@ exports.connect = function (req, res, next) {
  * @param {Function} next
  */
 exports.login = function (req, identifier, password, next) {
+  sails.log('local.js -> exports.login');
   sails.log(identifier);
   var isEmail = validator.isEmail(identifier)
     , query   = {};

@@ -1,23 +1,32 @@
 <div class="container-fluid">
-	<div class="row">
-		<header>
-			<h1>Register</h1>
-		</header>
-		<form role="form" action="/auth/local/register" method="post">
-		    <div class="form-group">
-				<label class="sr-only" for="email">Email address</label>
-				<input type="email" class="form-control" id="email" placeholder="Your email">
-			</div>
-			<div class="form-group">
-				<label class="sr-only" for="email">Phone number</label>
-				<input type="tel" class="form-control" id="phone" placeholder="Enter phone number">
-			</div>
-			<div class="form-group">
-				<label class="sr-only" for="password">Password</label>
-				<input type="password" class="form-control" name="password" placeholder="Enter password">
-			</div>
-		    <button type="submit" class="btn btn-default">Sign up</button>
-		</form>
-	</div>
+  <% if(errors.length > 0){ %>
+    <div class="row">
+      <div id="disconnect" class="bs-callout bs-callout-warning" style="display:none">
+        <% if(i=0;i<errors.length;i++){ %>
+            <h4><%- errors[i] %></h4>
+        <% } %>
+      </div>
+    </div>
+  <% } %>
+  <div class="row">
+    <header>
+      <h1>Register</h1>
+    </header>
+    <form role="form" action="/auth/local/register" method="post">
+        <div class="form-group">
+        <label class="sr-only" for="email">Email address</label>
+        <input type="email" class="form-control" id="email" name="email" placeholder="Your email">
+      </div>
+      <div class="form-group">
+        <label class="sr-only" for="email">Phone number</label>
+        <input type="tel" class="form-control" id="phone" name="phone" placeholder="Enter phone number">
+      </div>
+      <div class="form-group">
+        <label class="sr-only" for="password">Password</label>
+        <input type="password" class="form-control" name="password" placeholder="Enter password">
+      </div>
+        <button type="submit" class="btn btn-default">Sign up</button>
+    </form>
+  </div>
   </div>
 </div>

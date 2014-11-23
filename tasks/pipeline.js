@@ -28,6 +28,7 @@ var cssFilesToInject = [
 // (uses Grunt-style wildcard/glob/splat expressions)
 var jsFilesToInject = [
   
+  'js/dependencies/sails.io.js',
   'js/dist/jquery.js',  
   'js/jquery.cookie.js',  
   'js/modernizr.js', 
