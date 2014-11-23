@@ -32,10 +32,10 @@ exports.register = function (req, res, next) {
     return next(new Error('No email was entered.'));
   }
 
-  if (!phone) {
+  /*if (!phone) {
     req.flash('error', 'Error.Passport.Phone.Missing');
     return next(new Error('No phone was entered.'));
-  }
+  }*/
 
   if (!password) {
     req.flash('error', 'Error.Passport.Password.Missing');
@@ -110,8 +110,6 @@ exports.connect = function (req, res, next) {
  * @param {Function} next
  */
 exports.login = function (req, identifier, password, next) {
-  sails.log('local.js -> exports.login');
-  sails.log(identifier);
   var isEmail = validator.isEmail(identifier)
     , query   = {};
 

@@ -68,9 +68,6 @@ passport.connect = function (req, query, profile, next) {
     , config     = strategies[profile.provider]
     , user       = {};
 
-  sails.log("passport.js -> passport.connect");
-  sails.log(profile);
-
   // Set the authentication provider.
   query.provider = req.param('provider');
 
@@ -93,13 +90,8 @@ passport.connect = function (req, query, profile, next) {
       // Action:   Create a new user and assign them a passport.
       if (!passport) {
 
-        sails.log(user);
-
         User.create(user, function (err, user) {
           if (err) return next(err);
-
-          sails.log.info('Created a user!');
-          sails.log.info(user);
           
           query.user = user.id;
 
@@ -162,7 +154,6 @@ passport.connect = function (req, query, profile, next) {
  * @param  {Object} res
  */
 passport.endpoint = function (req, res) {
-  sails.log("passport.endpoint");
   var strategies = sails.config.passport
     , provider   = req.param('provider')
     , options    = {};
@@ -248,7 +239,6 @@ passport.callback = function (req, res, next) {
  * @param {Object} req
  */
 passport.loadStrategies = function (req) {
-  sails.log("passport.loadStrategies");
   var self       = this
     , strategies = sails.config.passport;
 
@@ -263,7 +253,6 @@ passport.loadStrategies = function (req) {
       // Only load the local strategy if it's enabled in the config
       if (strategies.local) {
         Strategy = strategies[key].strategy;
-
         self.use(new Strategy(options, self.protocols.local.login));
       }
     } else {

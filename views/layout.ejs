@@ -63,14 +63,14 @@
               <li><a href="#search">Search</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-            <% if (user) { %>
-              <% sails.log(user); %>
-              <li><a href="/user/<%= user.id %>"><%= user.username %></a></li>
+            <% if(user) { %>
+              <li><a href="/user/<%= user.id %>">You</a></li>
               <li class="logout">
                 <a href="/logout" class="button">Logout</a>
               </li>
             <% } else { %>
               <li><a href="/auth/facebook" role="button"><span class="fa fa-facebook"></span> Facebook Login</a></li>
+              <li class=""><a href="/login">Login</a></li>
               <li class=""><a href="/register">Register</a></li>
             <% } %>
             </ul>

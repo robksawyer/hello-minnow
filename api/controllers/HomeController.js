@@ -10,6 +10,7 @@ module.exports = {
 	index: function (req, res) {
 		
 		if(req.user) {
+			sails.log('HomeController.js');
 			sails.log(req.user);
 	        sails.log('------');
 	        res.view({
