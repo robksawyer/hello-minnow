@@ -71,11 +71,11 @@ passport.connect = function (req, query, profile, next) {
   // Set the authentication provider.
   query.provider = req.param('provider');
 
-  // If an email was available in the profile, we don't
+  // If an email was not available in the profile, we don't
   // have a way of identifying the user in the future. Throw an error and let
   // whoever's next in the line take care of it.
-  if (!Object.keys(user).length) {
-    return next(new Error('That email address has been used already.', null));
+  if (!Object.keys(profile).length) {
+    return next(new Error('Email address not found and we are unable to create an account.', null));
   }
 
   Passport.findOne({
@@ -83,16 +83,44 @@ passport.connect = function (req, query, profile, next) {
   , identifier : query.identifier.toString()
   }, function (err, passport) {
     if (err) return next(err);
-
     if (!req.user) {
       // Scenario: A new user is attempting to sign up using a third-party
       //           authentication provider.
       // Action:   Create a new user and assign them a passport.
       if (!passport) {
+        sails.log('profile');
+        sails.log(profile);
 
-        User.create(user, function (err, user) {
+        //
+        //Set the user email
+        //
+        if(profile.emails.length > 0){
+          if(profile.emails[0].value){
+            profile.email = profile.emails[0].value;
+            delete profile.emails;
+          } else {
+            sails.log.error('Unable to find the email in user profile.');
+          }
+        }
+
+        //
+        //Set the user Facebook id
+        //
+        if(profile.id){
+            profile.facebookId = profile.id;
+            delete profile.id;
+        } else {
+            sails.log.error('Unable to find the email in user profile.');
+        }
+
+        sails.log("New profile");
+        sails.log.info(profile);
+        User.create(profile, function (err, user) {
           if (err) return next(err);
           
+          sails.log('User created.');
+          sails.log.info(user);
+
           query.user = user.id;
 
           Passport.create(query, function (err, passport) {

@@ -21,12 +21,12 @@ module.exports = {
       type: 'string',
       unique: true
     },
-    username: { 
+/*    username: { 
       type: 'string', 
       unique: true 
-    },
+    },*/
     email: { 
-      type: 'string',  
+      type: 'string', 
       unique: true 
     },
     phone: {
@@ -51,7 +51,7 @@ module.exports = {
     },
     likes: 'int',
     comments: 'int',
-    rawResponse: 'JSON',
+    //rawResponse: 'JSON',
     token: 'string',
     vp_token: 'string', //Sent when the user signs up via a phone number. This token is sent along with a text message
     ve_token: 'string' //Sent along with an email and allows the url to verify their email 
@@ -63,8 +63,8 @@ module.exports = {
    * @param {Object}   user The soon-to-be-created user
    * @param {Function} next
    */
-  /*beforeCreate: function (user, next) {
-
+/*  beforeCreate: function (user, next) {
+    
     user.id = uuid.v4(); //Create the uuid
 
     delete user.ip;

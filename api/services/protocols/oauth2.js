@@ -28,6 +28,5 @@ module.exports = function (req, accessToken, refreshToken, profile, next) {
   if (refreshToken !== undefined) {
     query.tokens.refreshToken = refreshToken;
   }
-
   passport.connect(req, query, profile, next);
 };
