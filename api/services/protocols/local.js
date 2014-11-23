@@ -82,12 +82,19 @@ exports.connect = function (req, res, next) {
   }, function (err, passport) {
     if (err) return next(err);
 
+    sails.log('local.js -> connect');
+    sails.log(passport);
+    sails.log(user.id);
+    sails.log(password);
+    sails.log('------');
+
     if (!passport) {
       Passport.create({
         protocol : 'local'
       , password : password
       , user     : user.id
       }, function (err, passport) {
+        sails.log(user);
         next(err, user);
       });
     }

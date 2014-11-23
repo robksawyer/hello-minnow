@@ -121,8 +121,11 @@ var AuthController = {
    */
   callback: function (req, res) {
     passport.callback(req, res, function (err, user) {
+      //Capture errors from service
+      if(err){
+        req.flash('error', err.toString());
+      }
       req.login(user, function (err) {
-
         // If an error was thrown, redirect the user to the login which should
         // take care of rendering the error messages.
         if (err) {

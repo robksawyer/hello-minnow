@@ -39,7 +39,7 @@
     "sails": "~0.10.0-rc7",
     "sails-disk": "~0.10.0",
     "sails-generate-auth": "^0.1.4",
-    "sails-memory": "^0.10.3",
+    "sails-memory": "~0.10.3",
     "sails-mongo": "^0.10.4",
     "sails-postgresql": "^0.10.9",
     "strip-json-comments": "^1.0.2",
