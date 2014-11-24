@@ -64,13 +64,18 @@ module.exports = {
    * @param {Function} next
    */
 /*  beforeCreate: function (user, next) {
-    
-    user.id = uuid.v4(); //Create the uuid
 
-    delete user.ip;
+    sails.log('User -> beforeCreate');
+    sails.log(user);
+
+    user.id = uuid.v4(); //Create the uuid
+    sails.log(user.id);
+    sails.log(user.ip);
+    
+    if(user.ip) 
+      delete user.ip;
     
     next(null, user);
-
   },*/
 
 	// Hook that gets called after the default publishUpdate is run.

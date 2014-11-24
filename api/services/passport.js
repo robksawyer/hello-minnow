@@ -88,8 +88,6 @@ passport.connect = function (req, query, profile, next) {
       //           authentication provider.
       // Action:   Create a new user and assign them a passport.
       if (!passport) {
-        sails.log('profile');
-        sails.log(profile);
 
         //
         //Set the user email
@@ -113,14 +111,10 @@ passport.connect = function (req, query, profile, next) {
             sails.log.error('Unable to find the email in user profile.');
         }
 
-        sails.log("New profile");
-        sails.log.info(profile);
+
         User.create(profile, function (err, user) {
           if (err) return next(err);
           
-          sails.log('User created.');
-          sails.log.info(user);
-
           query.user = user.id;
 
           Passport.create(query, function (err, passport) {

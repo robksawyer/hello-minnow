@@ -20,9 +20,6 @@ module.exports.policies = {
   // (`true` allows public access)
   // '*': true,
   '*': [ 'passport' ],
-/*  AuthController: {
-  	register: ['getIp', 'anonymizer', 'passport']
-  }*/
   /*PostController: {
   	create: 'messagePolicy'
   },*/
