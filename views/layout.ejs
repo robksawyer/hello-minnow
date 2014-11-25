@@ -64,7 +64,7 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
             <% if(user) { %>
-              <li><a href="/user/<%= user.id %>">You</a></li>
+	    <li><a href="/user/<%= user.id %>"><%= user.email %></a></li>
               <li class="logout">
                 <a href="/logout" class="button">Logout</a>
               </li>
@@ -138,12 +138,7 @@
     <!--SCRIPTS-->
     <script src="/js/dependencies/sails.io.js"></script>
     <script src="/js/dist/jquery.js"></script>
-    <script src="/js/jquery.cookie.js"></script>
-    <script src="/js/modernizr.js"></script>
     <script src="/js/dist/js/bootstrap.js"></script>
-    <script src="/js/js/placeholder.js"></script>
-    <script src="/js/lib/fastclick.js"></script>
-    <script src="/js/moment.js"></script>
     <!--SCRIPTS END-->
 
   </body>
